@@ -1,18 +1,17 @@
 let loginForm = document.getElementById('userForm');
+var nodemailer = require('nodemailer');
 
 loginForm.addEventListener("submit", (e) => {
     e.preventDefault();
-  
-    let username = document.getElementById("userName");
-    let password = document.getElementById("passw");
     let email = document.getElementById("email");
+    let password = document.getElementById("passw");
+    
   
-    if (username.value == "team2" && password.value == "team2" && email.value == "wrightteam2.137@gmail.com") {
+    if (email.value == "wrightteam2.137@gmail.com" && password.value == "team2" ) {
       
       alert("Correct, a verification code has been sent to your email.");
       location=("otherpage.html");
         /*test*/
-   var nodemailer = require('nodemailer');
 
    var transporter = nodemailer.createTransport({
    service: 'gmail',
@@ -36,19 +35,10 @@ loginForm.addEventListener("submit", (e) => {
      console.log('Email sent: ' + info.response);
    }
  });
-    
- 
- 
- 
- 
- 
+
      /*test*/
     } else {
       alert("Wrong");
-        
-      
-  
-      username.value = "";
       password.value = "";
       email.value = "";
     }
