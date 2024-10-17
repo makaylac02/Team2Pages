@@ -1,5 +1,5 @@
 let loginForm = document.getElementById('userForm');
-var nodemailer = require('nodemailer');
+const nodemailer = require('nodemailer');
 
 loginForm.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -13,17 +13,22 @@ loginForm.addEventListener("submit", (e) => {
       location=("otherpage.html");
         /*test*/
 
-   var transporter = nodemailer.createTransport({
-   service: 'gmail',
+   const transporter = nodemailer.createTransport({
+   service: 'Gmail',
+   host: "smtp.gmail.com",
+   port: 465,
+   secure: true,
    auth: {
-     user: "wrightteam2.137@gmail.com",
-     pass: 'Team2!@Wright'
+     /*user: "wrightteam2.137@gmail.com",
+     pass: 'Team2!@Wright'*/
+     user: "makaylacarr74@gmail.com",
+     pass: "tylc sdni utee vcyl",
    }
  });
  
- var mailOptions = {
-   from: "wrightteam2.137@gmail.com",
-   to: 'makaylacarr74@gmail.com',
+ const mailOptions = {
+   from: "makaylacarr74@gmail.com",
+   to: 'makayla_carr9@yahoo.com',
    subject: 'Sending Email using Node.js',
    text: 'That was easy!'
  };
