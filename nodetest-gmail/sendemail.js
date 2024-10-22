@@ -13,8 +13,8 @@ const transporter = nodemailer.createTransport({
 const mailOptions = {
 	   from: "makaylacarr74@gmail.com",
 	   to: 'makayla_carr9@yahoo.com',
-	   subject: 'Sending Email using Node.js',
-	   text: 'That was easy!'
+	   subject: 'Verification Code',
+	   text: 'Code: '
 	 };
  
  transporter.sendMail(mailOptions, function(error, info){

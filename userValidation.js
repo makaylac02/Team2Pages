@@ -9,7 +9,7 @@ loginForm.addEventListener("submit", (e) => {
     if (email.value == "wrightteam2.137@gmail.com" && password.value == "team2" ) {
       
       alert("Correct, a verification code has been sent to your email.");
-     /* <script src="nodetest-gmail/sendemail.js"></script>*/
+      
       location=("otherpage.html");
     } else {
       alert("Wrong");
