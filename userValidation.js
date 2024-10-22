@@ -10,6 +10,7 @@ loginForm.addEventListener("submit", (e) => {
       
       alert("Correct, a verification code has been sent to your email.");
       
+      
       location=("otherpage.html");
     } else {
       alert("Wrong");
