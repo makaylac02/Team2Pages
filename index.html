@@ -1,8 +1,11 @@
 <!--
-- Enable username and password authentication
-- Enable two factor authentication (mentioned something about using github acccount 2factor?) --- GitHub Enterprise
-- Website displays 2nd message upon successful authentication
+- Enable username and password authentication - done
+- Website displays 2nd message upon successful authentication - roughly done -> need random number thats not hardcoded
 - server push github repo for website to post image
+- 
+currently:
+- uservalidation is connected to backend, but causing errors because node cant read some of it -> may have to consider a seperate file for random number
+- https://expressjs.com/
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -38,8 +41,6 @@
           </h3>
           <form action="" method="post" id="userForm">
             <fieldset>
-              <!-- <label for="userName">Username: </label><br>
-                        <input type="text" name="uname" id="userName" required><br>-->
               <label for="email">Email: </label><br />
               <input type="email" name="email" id="email" required /><br />
               <label for="passw">Password: </label><br />
@@ -47,7 +48,9 @@
               <input type="submit" value="Login" />
             </fieldset>
           </form>
+          
           <script src="userValidation.js"></script>
+          
         </article>
         <article>
           <h4>Exposing the Deathstar</h4>
