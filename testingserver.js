@@ -1,33 +1,38 @@
 /*
 TODO: The ability to redirect to other pages needs to be coded through routing. Currently will not move to the next page. 
 Emails send with a hardcoded code -> Need to find out how to do a random number through nodejs.
+Just not reading userValidation.js
 */
 const express = require('express');
 const path = require('path');
 const nodemailer = require("nodemailer");
-
-
-// routing
-//const userValidation = require('./userValidation');
-
 const app = express();
 
+// middle
+
 app.use(express.static('public'));
-
 app.use(express.json())
+app.use(express.urlencoded({ extended: true })); 
 
-// routes
-//app.use('/userValidation', userValidation)
+
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+app.get('/otherpage', (req, res) => {
+  res.sendFile(path.join(__dirname, 'otherpage.html'));
+});
 
+app.get('/index2', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index2.html'));
+});
 
-app.post('/', (req, res) =>{
-  console.log(req.body)
-
+// moving to otherpage
+app.post('/submit', (req, res) => {
+  const { email, password } = req.body;
+  console.log('Email:', email);
+  console.log('password:', password);
   const transporter = nodemailer.createTransport({
 	  service: "Gmail",
 	  host: "smtp.gmail.com",
@@ -52,12 +57,23 @@ app.post('/', (req, res) =>{
           } else {
               console.log('Email sent: ' + info.response);
             }
+          });
+  res.redirect('/otherpage');
+  next();
 });
 
-})
+// moving to index2
+app.post('/submit2', (req, res) => {
+  //const { code } = req.body;
+ // console.log('Code:', code);
+  res.redirect('/index2');
+});
 
 
 app.listen(8080, () => {
   console.log('Server is listening on port 8080');
 });
+
+
+
 

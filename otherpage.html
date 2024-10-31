@@ -1,27 +1,22 @@
 
-<form action="" method="post" id="codeForm">
+<form action="/submit2" method="post" id="codeForm">
     <fieldset>
         <label for="Code">Code: </label><br>
         <input type="text" name="code" id="verifyCode" required><br>
-        <input type="submit" value="Login" />
+        <input type="submit" value="Login" /><br>
     </fieldset>
 </form>
 
-
-<script>
+<!--<script>
 
     let codeForm = document.getElementById("codeForm");
     let code = document.getElementById("verifyCode");
-
-
     codeForm.addEventListener("submit", (e) => {
     e.preventDefault();
     
     // verifies the correct random number variable -> hardcoded for now
     if(code.value === "12345") {
         alert("correct, welcome");
-        location=("index2.html");
-
     } else {
         alert('wrong verification');
         code.value="";
@@ -31,3 +26,10 @@
     });
 
 </script>
+
+<form action="/submit2" method="post" id="continue"></form>
+<fieldset>
+    <input type="submit" value="Continue" />
+</fieldset>
+</form>
+
