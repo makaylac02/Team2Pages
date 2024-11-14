@@ -1,7 +1,8 @@
 /*
-TODO: The ability to redirect to other pages needs to be coded through routing. Currently will not move to the next page. 
-Emails send with a hardcoded code -> Need to find out how to do a random number through nodejs.
-Just not reading userValidation.js
+TODO:not hardcoding usernames and passwords
+OPENCV install
+Installation list
+Script for auto putting images into table ?
 */
 const express = require('express');
 const path = require('path');
@@ -10,14 +11,13 @@ const app = express();
 
 // middle
 app.use(express.static('public'));
-app.use(express.json())
 app.use(express.urlencoded({ extended: true })); 
-
 
 // gets original homepage
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
+
 // gets verification page for code verification
 app.get('/otherpage', (req, res) => {
   res.sendFile(path.join(__dirname, 'otherpage.html'));
@@ -28,6 +28,13 @@ app.get('/index2', (req, res) => {
   res.sendFile(path.join(__dirname, 'index2.html'));
 });
 
+// page for image table
+app.get('/imageCollection', function(req, res){
+  res.sendFile(path.join(__dirname, 'imageCollection.html'));
+});
+
+// 4 digit random number for verification code
+var verificationCode = Math.floor(1000 + Math.random() * 9000);
 
 
 // nodemailer code, obtains form from /submit in index.html
@@ -35,6 +42,7 @@ app.post('/submit', (req, res) => {
   const { email, password } = req.body;
   console.log('Email:', email);
   console.log('password:', password);
+  
 // rough if statement for email and password verification - cannot get uservalidation to work, needs proper username/password storage.
   if(email =="wrightteam2.137@gmail.com" && password =="team2") {
   const transporter = nodemailer.createTransport({
@@ -52,7 +60,7 @@ app.post('/submit', (req, res) => {
     from: "makaylacarr74@gmail.com",
     to: 'makayla_carr9@yahoo.com',
     subject: 'Verification Code',
-    text: " Code: 12345" //req.body.verificationCode -> needs randomized
+    text: " Code: " + verificationCode 
 };
 
     transporter.sendMail(mailOptions, function(error, info){
@@ -62,28 +70,30 @@ app.post('/submit', (req, res) => {
               console.log('Email sent: ' + info.response);
             }
           });
+
 // redirects to verification when email successfully sent
   res.redirect('/otherpage');
 
 } else {
-
+  // if login doesn't match, post error ->> how to reset login info instead of moving to error page? 
   console.log(error);
+  
 }
   
 });
 
-// moving to index2 reading from /submit2 form
+// moving to index2 reading from /submit2 form, read code entered
 app.post('/submit2', (req, res) => {
   const { code } = req.body;
   console.log('Verification Code: ', code);
-if (code == "12345") {
+// verify if code works, if yes, moves to verified homepage, if not, redirects back to unverified login page and posts error.
+if (code == verificationCode) {
   res.redirect('/index2');
 } else {
   res.redirect('/');
   console.log(error);
 }
 });
-
 
 app.listen(8080, () => {
   console.log('Server is listening on port 8080');

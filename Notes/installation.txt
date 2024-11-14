@@ -1,0 +1,11 @@
+IMAGE RECOGNITION
+might have to install python virtual environemnt
+sudo apt install python3-pip --> 
+pip3 install opencv-python  apt install python3-opencv?
+pip3 install numpy
+
+SERVER
+sudo apt install nodejs -y
+sudo apt install npm -y
+npm install nodemailer
+npm install xhr2 --> ?

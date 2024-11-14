@@ -1,3 +1,4 @@
+// potentially useless file
 let loginForm = document.getElementById('userForm');
 let email = document.getElementById("email");
 let password = document.getElementById("password");
