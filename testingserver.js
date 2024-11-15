@@ -1,5 +1,6 @@
 /*
 TODO:not hardcoding usernames and passwords
+SERVING IMAGES
 OPENCV install
 Installation list
 Script for auto putting images into table ?
@@ -11,6 +12,7 @@ const app = express();
 
 // middle
 app.use(express.static('public'));
+//app.use('/images', express.static('/ImageCollection'));
 app.use(express.urlencoded({ extended: true })); 
 
 // gets original homepage
@@ -30,8 +32,14 @@ app.get('/index2', (req, res) => {
 
 // page for image table
 app.get('/imageCollection', function(req, res){
-  res.sendFile(path.join(__dirname, 'imageCollection.html'));
+  res.sendFile(path.join(__dirname, 'ImageCollection/imageCollection.html'));
 });
+
+app.use('/ImageCollection', express.static(path.join(__dirname, 'ImageCollection')));
+
+/*app.get('/imageCollection', function(req, res){
+  res.sendFile(path.join(__dirname, 'imageCollection.html'));
+});*/
 
 // 4 digit random number for verification code
 var verificationCode = Math.floor(1000 + Math.random() * 9000);
