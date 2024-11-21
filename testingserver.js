@@ -32,14 +32,10 @@ app.get('/index2', (req, res) => {
 
 // page for image table
 app.get('/imageCollection', function(req, res){
-  res.sendFile(path.join(__dirname, 'ImageCollection/imageCollection.html'));
+  res.sendFile(path.join(__dirname, 'imageCollection.html'));
 });
 
 app.use('/ImageCollection', express.static(path.join(__dirname, 'ImageCollection')));
-
-/*app.get('/imageCollection', function(req, res){
-  res.sendFile(path.join(__dirname, 'imageCollection.html'));
-});*/
 
 // 4 digit random number for verification code
 var verificationCode = Math.floor(1000 + Math.random() * 9000);
@@ -47,6 +43,7 @@ var verificationCode = Math.floor(1000 + Math.random() * 9000);
 
 // nodemailer code, obtains form from /submit in index.html
 app.post('/submit', (req, res) => {
+  console.log('test');
   const { email, password } = req.body;
   console.log('Email:', email);
   console.log('password:', password);
