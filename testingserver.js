@@ -1,10 +1,3 @@
-/*
-TODO:not hardcoding usernames and passwords
-SERVING IMAGES
-OPENCV install
-Installation list
-Script for auto putting images into table ?
-*/
 const express = require('express');
 const path = require('path');
 const nodemailer = require("nodemailer");
